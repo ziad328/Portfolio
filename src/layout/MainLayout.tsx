@@ -1,36 +1,38 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
-import LightRays from '../components/ui/LightRays';
-import ClickSpark from '../components/ui/ClickSpark';
+import FloatingLines from '../components/ui/FloatingLines';
 
 function MainLayout() {
+
   return (
-    <ClickSpark
-      sparkColor='#ffffff'
-      sparkSize={10}
-      sparkRadius={15}
-      sparkCount={8}
-      duration={400}
-    >
-      {/* Light Rays Background - Fixed on all pages */}
-      <div className="fixed inset-0 -z-10">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#FFFFFF"
-          raysSpeed={1.5}
-          lightSpread={0.8}
-          rayLength={1}
-          followMouse={true}
-          mouseInfluence={0.1}
-          noiseAmount={0.1}
-          distortion={0.05}
+    <>
+      {/* FloatingLines Background - Fixed on all pages */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: -1
+      }}>
+        <FloatingLines
+          linesGradient={['#1E3A8A', '#5B21B6', '#7E22CE']}
+          enabledWaves={['top', 'middle', 'bottom']}
+          lineCount={[4, 6, 4]}
+          lineDistance={[8, 6, 8]}
+          animationSpeed={0.8}
+          interactive={true}
+          bendRadius={5.0}
+          bendStrength={-0.5}
+          parallax={true}
+          parallaxStrength={0.15}
+          mixBlendMode="screen"
         />
       </div>
 
       <Navbar />
-
       <Outlet />
-    </ClickSpark>
+    </>
   );
 }
 
